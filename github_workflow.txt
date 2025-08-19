@@ -1,0 +1,444 @@
+name: Microsoft Style Guide Analysis
+
+on:
+  # Trigger on pull requests
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.md'
+      - '**/*.txt'
+      - '**/*.rst'
+      - '**/*.adoc'
+  
+  # Trigger on issue comments with specific commands
+  issue_comment:
+    types: [created]
+  
+  # Trigger on pull request reviews
+  pull_request_review:
+    types: [submitted]
+  
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      files:
+        description: 'Specific files to analyze (space-separated)'
+        required: false
+        default: ''
+      analysis_type:
+        description: 'Type of analysis'
+        required: false
+        default: 'comprehensive'
+        type: choice
+        options:
+          - comprehensive
+          - voice_tone
+          - grammar
+          - terminology
+          - accessibility
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  checks: write
+
+jobs:
+  style-analysis:
+    runs-on: ubuntu-latest
+    if: >
+      (github.event_name == 'pull_request') ||
+      (github.event_name == 'issue_comment' && 
+       (contains(github.event.comment.body, '@ms-style') || 
+        contains(github.event.comment.body, '/style-check'))) ||
+      (github.event_name == 'workflow_dispatch')
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache Python dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        else
+          pip install mcp>=1.0.0 regex>=2023.10.3
+        fi
+        
+    - name: Validate MCP server
+      run: |
+        if [ ! -f mcp_server.py ]; then
+          echo "Error: mcp_server.py not found in repository"
+          echo "Please add the Microsoft Style Guide MCP server files to your repository"
+          exit 1
+        fi
+        python -c "import mcp_server; print('✅ MCP server validation successful')"
+        
+    - name: Extract content for analysis
+      id: extract-content
+      run: |
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          echo "analysis_type=pull_request" >> $GITHUB_OUTPUT
+          
+          # Get PR title and description
+          echo "pr_content<<EOF" >> $GITHUB_OUTPUT
+          echo "# ${{ github.event.pull_request.title }}" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "${{ github.event.pull_request.body }}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+        elif [ "${{ github.event_name }}" == "issue_comment" ]; then
+          echo "analysis_type=comment" >> $GITHUB_OUTPUT
+          
+          echo "comment_content<<EOF" >> $GITHUB_OUTPUT
+          echo "${{ github.event.comment.body }}" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+        elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          echo "analysis_type=manual" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Get changed files (PR only)
+      if: github.event_name == 'pull_request'
+      id: changed-files
+      run: |
+        # Get list of changed documentation files
+        git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} \
+          | grep -E '\.(md|txt|rst|adoc)$' > changed_files.txt || echo "No documentation files changed"
+        
+        if [ -s changed_files.txt ]; then
+          echo "has_changed_files=true" >> $GITHUB_OUTPUT
+          echo "Changed documentation files:"
+          cat changed_files.txt
+        else
+          echo "has_changed_files=false" >> $GITHUB_OUTPUT
+          echo "No documentation files changed in this PR"
+        fi
+        
+    - name: Analyze PR content
+      if: github.event_name == 'pull_request'
+      id: pr-analysis
+      run: |
+        if [ ! -z "${{ steps.extract-content.outputs.pr_content }}" ]; then
+          echo "🔍 Analyzing PR title and description..."
+          python mcp_client.py \
+            --mode text \
+            --text "${{ steps.extract-content.outputs.pr_content }}" \
+            --analysis-type comprehensive > pr_analysis.txt
+          
+          echo "pr_results<<EOF" >> $GITHUB_OUTPUT
+          echo "## 📋 PR Content Analysis" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          cat pr_analysis.txt >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Analyze changed files
+      if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_changed_files == 'true'
+      id: file-analysis
+      run: |
+        echo "file_results<<EOF" >> $GITHUB_OUTPUT
+        echo "## 📄 Changed Files Analysis" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        
+        while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            echo "### 📄 \`$file\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            
+            # Check file size (skip very large files)
+            file_size=$(wc -c < "$file")
+            if [ "$file_size" -gt 100000 ]; then
+              echo "⚠️ File too large for analysis (${file_size} bytes)" >> $GITHUB_OUTPUT
+              echo "" >> $GITHUB_OUTPUT
+              continue
+            fi
+            
+            # Analyze the file
+            python mcp_client.py --mode file --file "$file" --analysis-type comprehensive >> $GITHUB_OUTPUT 2>/dev/null || {
+              echo "❌ Analysis failed for $file" >> $GITHUB_OUTPUT
+            }
+            echo "" >> $GITHUB_OUTPUT
+            echo "---" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+          fi
+        done < changed_files.txt
+        
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+    - name: Analyze comment content
+      if: github.event_name == 'issue_comment'
+      id: comment-analysis
+      run: |
+        comment_body="${{ github.event.comment.body }}"
+        
+        # Check for specific commands
+        if echo "$comment_body" | grep -q "/style-check file:"; then
+          # Extract file path
+          file_path=$(echo "$comment_body" | sed -n 's|.*/style-check file:\s*\([^[:space:]]*\).*|\1|p')
+          
+          if [ -f "$file_path" ]; then
+            echo "🔍 Analyzing file: $file_path"
+            python mcp_client.py --mode file --file "$file_path" --analysis-type comprehensive > comment_analysis.txt
+          else
+            echo "❌ File not found: $file_path" > comment_analysis.txt
+          fi
+          
+        elif echo "$comment_body" | grep -q "/style-check selection:"; then
+          # Extract selected text
+          selection=$(echo "$comment_body" | sed -n 's|.*/style-check selection:\s*\(.*\)|\1|p')
+          echo "🔍 Analyzing selected text..."
+          python mcp_client.py --mode text --text "$selection" --analysis-type comprehensive > comment_analysis.txt
+          
+        elif echo "$comment_body" | grep -q "@ms-style"; then
+          # Analyze the entire comment
+          echo "🔍 Analyzing comment content..."
+          python mcp_client.py --mode text --text "$comment_body" --analysis-type comprehensive > comment_analysis.txt
+          
+        else
+          # Show help
+          echo "## Microsoft Style Guide Commands" > comment_analysis.txt
+          echo "" >> comment_analysis.txt
+          echo "Available commands:" >> comment_analysis.txt
+          echo "- \`/style-check file:path/to/file.md\` - Analyze a specific file" >> comment_analysis.txt
+          echo "- \`/style-check selection:text to analyze\` - Analyze specific text" >> comment_analysis.txt
+          echo "- \`@ms-style\` - Analyze the current comment content" >> comment_analysis.txt
+          echo "" >> comment_analysis.txt
+          echo "Examples:" >> comment_analysis.txt
+          echo "- \`/style-check file:README.md\`" >> comment_analysis.txt
+          echo "- \`/style-check selection:Welcome to our product!\`" >> comment_analysis.txt
+        fi
+        
+        echo "comment_results<<EOF" >> $GITHUB_OUTPUT
+        cat comment_analysis.txt >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+    - name: Analyze manual files
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.files != ''
+      id: manual-analysis
+      run: |
+        echo "manual_results<<EOF" >> $GITHUB_OUTPUT
+        echo "## 📄 Manual Analysis Results" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        
+        for file in ${{ github.event.inputs.files }}; do
+          if [ -f "$file" ]; then
+            echo "### 📄 \`$file\`" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            python mcp_client.py --mode file --file "$file" --analysis-type ${{ github.event.inputs.analysis_type || 'comprehensive' }} >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+          else
+            echo "❌ File not found: $file" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+          fi
+        done
+        
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+    - name: Create analysis summary
+      id: summary
+      run: |
+        echo "summary<<EOF" >> $GITHUB_OUTPUT
+        echo "## 🎯 Microsoft Style Guide Analysis" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "*Analysis performed on $(date)*" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          echo "**Analysis Type:** Pull Request Review" >> $GITHUB_OUTPUT
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_OUTPUT
+          echo "**Files Changed:** ${{ steps.changed-files.outputs.has_changed_files == 'true' && 'Yes' || 'No documentation files' }}" >> $GITHUB_OUTPUT
+        elif [ "${{ github.event_name }}" == "issue_comment" ]; then
+          echo "**Analysis Type:** Comment Command" >> $GITHUB_OUTPUT
+          echo "**Trigger:** Issue/PR Comment" >> $GITHUB_OUTPUT
+        elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          echo "**Analysis Type:** Manual Trigger" >> $GITHUB_OUTPUT
+          echo "**Files:** ${{ github.event.inputs.files }}" >> $GITHUB_OUTPUT
+          echo "**Analysis Type:** ${{ github.event.inputs.analysis_type }}" >> $GITHUB_OUTPUT
+        fi
+        
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 📋 Key Principles Checked" >> $GITHUB_OUTPUT
+        echo "- ✅ **Voice & Tone:** Warm/relaxed, crisp/clear, ready to help" >> $GITHUB_OUTPUT
+        echo "- ✅ **Grammar:** Active voice, sentence length, clarity" >> $GITHUB_OUTPUT
+        echo "- ✅ **Terminology:** Microsoft-approved terms" >> $GITHUB_OUTPUT
+        echo "- ✅ **Accessibility:** Inclusive, bias-free language" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+        
+    - name: Post analysis results
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const summary = `${{ steps.summary.outputs.summary }}`;
+          const prResults = `${{ steps.pr-analysis.outputs.pr_results || '' }}`;
+          const fileResults = `${{ steps.file-analysis.outputs.file_results || '' }}`;
+          const commentResults = `${{ steps.comment-analysis.outputs.comment_results || '' }}`;
+          const manualResults = `${{ steps.manual-analysis.outputs.manual_results || '' }}`;
+          
+          let comment = summary;
+          
+          if (prResults) {
+            comment += '\n\n' + prResults;
+          }
+          
+          if (fileResults) {
+            comment += '\n\n' + fileResults;
+          }
+          
+          if (commentResults) {
+            comment += '\n\n' + commentResults;
+          }
+          
+          if (manualResults) {
+            comment += '\n\n' + manualResults;
+          }
+          
+          // Add footer
+          comment += '\n\n---';
+          comment += '\n*📚 Analysis powered by [Microsoft Style Guide MCP Server](https://learn.microsoft.com/en-us/style-guide/)*';
+          comment += '\n*🔧 To use commands: `/style-check file:filename.md` or `@ms-style` for content analysis*';
+          
+          if (context.eventName === 'issue_comment') {
+            // Reply to the comment
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+          } else if (context.eventName === 'pull_request') {
+            // Comment on the PR
+            await github.rest.pulls.createReview({
+              pull_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment,
+              event: 'COMMENT'
+            });
+          }
+
+  # Job for validating style guide compliance
+  style-compliance-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        else
+          pip install mcp>=1.0.0 regex>=2023.10.3
+        fi
+        
+    - name: Run style compliance check
+      id: compliance-check
+      run: |
+        # Get changed documentation files
+        git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} \
+          | grep -E '\.(md|txt|rst)$' > changed_files.txt || true
+        
+        if [ ! -s changed_files.txt ]; then
+          echo "No documentation files to check"
+          echo "status=success" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+        
+        total_issues=0
+        files_with_issues=0
+        
+        while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            echo "Checking $file..."
+            
+            # Run analysis and capture issues count
+            python mcp_client.py --mode file --file "$file" --analysis-type comprehensive > analysis_output.txt
+            
+            # Simple heuristic to count issues (look for "issues found" or "❌")
+            issue_count=$(grep -c "issues found\|❌" analysis_output.txt || echo "0")
+            
+            if [ "$issue_count" -gt 0 ]; then
+              files_with_issues=$((files_with_issues + 1))
+              total_issues=$((total_issues + issue_count))
+            fi
+          fi
+        done < changed_files.txt
+        
+        echo "total_issues=$total_issues" >> $GITHUB_OUTPUT
+        echo "files_with_issues=$files_with_issues" >> $GITHUB_OUTPUT
+        
+        # Set status based on issues found
+        if [ "$total_issues" -eq 0 ]; then
+          echo "status=success" >> $GITHUB_OUTPUT
+        elif [ "$total_issues" -le 5 ]; then
+          echo "status=warning" >> $GITHUB_OUTPUT
+        else
+          echo "status=failure" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Create check status
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { status, total_issues, files_with_issues } = {
+            status: '${{ steps.compliance-check.outputs.status }}',
+            total_issues: '${{ steps.compliance-check.outputs.total_issues }}',
+            files_with_issues: '${{ steps.compliance-check.outputs.files_with_issues }}'
+          };
+          
+          let conclusion, title, summary;
+          
+          if (status === 'success') {
+            conclusion = 'success';
+            title = '✅ Microsoft Style Guide compliance check passed';
+            summary = 'All documentation files follow Microsoft Style Guide principles.';
+          } else if (status === 'warning') {
+            conclusion = 'neutral';
+            title = '⚠️ Minor style guide issues found';
+            summary = `Found ${total_issues} minor issues in ${files_with_issues} file(s). Consider reviewing the suggestions.`;
+          } else {
+            conclusion = 'failure';
+            title = '❌ Style guide issues need attention';
+            summary = `Found ${total_issues} issues in ${files_with_issues} file(s). Please review and address the style guide violations.`;
+          }
+          
+          await github.rest.checks.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: 'Microsoft Style Guide Compliance',
+            head_sha: context.payload.pull_request.head.sha,
+            status: 'completed',
+            conclusion: conclusion,
+            output: {
+              title: title,
+              summary: summary,
+              text: `See the pull request comments for detailed analysis results.\n\n[View Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/)`
+            }
+          });

@@ -1,0 +1,260 @@
+{
+  "// Microsoft Style Guide MCP Server Configuration": "Copy this configuration to your VSCode settings.json",
+  
+  "mcpServers": {
+    "microsoft-style-guide": {
+      "command": "python",
+      "args": [
+        "/absolute/path/to/your/mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/absolute/path/to/your/project"
+      }
+    }
+  },
+  
+  "// Editor settings for style guide compliance": "",
+  "editor.rulers": [80, 120],
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 80,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.microsoftStyleGuide": "explicit"
+  },
+  
+  "// Microsoft Style Guide specific settings": "",
+  "microsoftStyleGuide": {
+    "enableLinting": true,
+    "autoAnalyze": true,
+    "showInlineHints": true,
+    "analysisTypes": {
+      "comprehensive": true,
+      "voiceTone": true,
+      "grammar": true,
+      "terminology": true,
+      "accessibility": true
+    },
+    "notifications": {
+      "showCompletionMessage": true,
+      "showErrorMessages": true,
+      "showWarningMessages": true
+    },
+    "fileTypes": [
+      "markdown",
+      "plaintext",
+      "restructuredtext",
+      "asciidoc"
+    ],
+    "excludePatterns": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.git/**",
+      "**/vendor/**",
+      "**/.vscode/**"
+    ],
+    "severityLevels": {
+      "voice": "warning",
+      "grammar": "error",
+      "terminology": "warning",
+      "accessibility": "error"
+    }
+  },
+  
+  "// File associations for style guide analysis": "",
+  "files.associations": {
+    "*.md": "markdown",
+    "*.mdx": "markdown",
+    "*.txt": "plaintext",
+    "*.rst": "restructuredtext"
+  },
+  
+  "// Markdown specific settings": "",
+  "markdown.extension.toc.updateOnSave": true,
+  "markdown.extension.preview.autoShowPreviewToSide": false,
+  
+  "// Commands available in Command Palette": "",
+  "commands": [
+    {
+      "command": "microsoftStyleGuide.analyzeDocument",
+      "title": "Analyze Document with Microsoft Style Guide",
+      "category": "Microsoft Style Guide",
+      "icon": "$(book)"
+    },
+    {
+      "command": "microsoftStyleGuide.analyzeSelection",
+      "title": "Analyze Selected Text",
+      "category": "Microsoft Style Guide",
+      "icon": "$(selection)"
+    },
+    {
+      "command": "microsoftStyleGuide.showGuidelines",
+      "title": "Show Style Guidelines",
+      "category": "Microsoft Style Guide",
+      "icon": "$(info)"
+    },
+    {
+      "command": "microsoftStyleGuide.suggestImprovements",
+      "title": "Suggest Improvements",
+      "category": "Microsoft Style Guide",
+      "icon": "$(lightbulb)"
+    },
+    {
+      "command": "microsoftStyleGuide.checkVoiceTone",
+      "title": "Check Voice and Tone",
+      "category": "Microsoft Style Guide",
+      "icon": "$(comment)"
+    },
+    {
+      "command": "microsoftStyleGuide.checkGrammar",
+      "title": "Check Grammar and Style",
+      "category": "Microsoft Style Guide",
+      "icon": "$(check)"
+    },
+    {
+      "command": "microsoftStyleGuide.checkTerminology",
+      "title": "Check Terminology",
+      "category": "Microsoft Style Guide",
+      "icon": "$(symbol-keyword)"
+    },
+    {
+      "command": "microsoftStyleGuide.checkAccessibility",
+      "title": "Check Accessibility",
+      "category": "Microsoft Style Guide",
+      "icon": "$(accessibility)"
+    }
+  ],
+  
+  "// Keyboard shortcuts": "",
+  "keybindings": [
+    {
+      "command": "microsoftStyleGuide.analyzeDocument",
+      "key": "ctrl+shift+m ctrl+shift+a",
+      "mac": "cmd+shift+m cmd+shift+a",
+      "when": "editorTextFocus && (editorLangId == markdown || editorLangId == plaintext || editorLangId == restructuredtext)"
+    },
+    {
+      "command": "microsoftStyleGuide.analyzeSelection",
+      "key": "ctrl+shift+m ctrl+shift+s",
+      "mac": "cmd+shift+m cmd+shift+s",
+      "when": "editorHasSelection"
+    },
+    {
+      "command": "microsoftStyleGuide.showGuidelines",
+      "key": "ctrl+shift+m ctrl+shift+g",
+      "mac": "cmd+shift+m cmd+shift+g"
+    },
+    {
+      "command": "microsoftStyleGuide.suggestImprovements",
+      "key": "ctrl+shift+m ctrl+shift+i",
+      "mac": "cmd+shift+m cmd+shift+i",
+      "when": "editorHasSelection"
+    },
+    {
+      "command": "microsoftStyleGuide.checkVoiceTone",
+      "key": "ctrl+shift+m ctrl+shift+v",
+      "mac": "cmd+shift+m cmd+shift+v",
+      "when": "editorTextFocus"
+    }
+  ],
+  
+  "// Context menu integration": "",
+  "contextMenus": {
+    "editor/context": [
+      {
+        "command": "microsoftStyleGuide.analyzeSelection",
+        "when": "editorHasSelection && (editorLangId == markdown || editorLangId == plaintext || editorLangId == restructuredtext)",
+        "group": "1_modification@1"
+      },
+      {
+        "command": "microsoftStyleGuide.suggestImprovements",
+        "when": "editorHasSelection && (editorLangId == markdown || editorLangId == plaintext || editorLangId == restructuredtext)",
+        "group": "1_modification@2"
+      },
+      {
+        "command": "microsoftStyleGuide.showGuidelines",
+        "when": "editorTextFocus && (editorLangId == markdown || editorLangId == plaintext || editorLangId == restructuredtext)",
+        "group": "9_cutcopypaste@3"
+      }
+    ],
+    "explorer/context": [
+      {
+        "command": "microsoftStyleGuide.analyzeDocument",
+        "when": "resourceExtname =~ /\\.(md|txt|rst)$/",
+        "group": "2_workspace"
+      }
+    ]
+  },
+  
+  "// Status bar integration": "",
+  "statusBar": {
+    "microsoftStyleGuide.showStatus": true,
+    "microsoftStyleGuide.showScore": true,
+    "microsoftStyleGuide.showIssueCount": true
+  },
+  
+  "// Diagnostic settings": "",
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+  
+  "// Git integration": "",
+  "git.decorations.enabled": true,
+  "scm.diffDecorations": "all",
+  
+  "// Additional helpful settings for documentation": "",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  
+  "// Spell checking (if you have a spell check extension)": "",
+  "cSpell.enabled": true,
+  "cSpell.checkLimit": 500,
+  "cSpell.words": [
+    "Microsoft",
+    "VSCode",
+    "GitHub",
+    "Copilot",
+    "API",
+    "UI",
+    "UX",
+    "README",
+    "JSON",
+    "YAML",
+    "Markdown",
+    "MCP"
+  ],
+  
+  "// Terminal settings for running MCP client": "",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  
+  "// IntelliSense and autocomplete": "",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  
+  "// Workspace trust": "",
+  "security.workspace.trust.untrustedFiles": "prompt",
+  
+  "// Performance settings": "",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.git": true,
+    "**/dist": true,
+    "**/build": true
+  },
+  
+  "// Extension recommendations": "",
+  "extensions.recommendations": [
+    "ms-python.python",
+    "ms-vscode.vscode-json",
+    "yzhang.markdown-all-in-one",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

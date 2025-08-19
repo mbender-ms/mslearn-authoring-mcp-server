@@ -1,0 +1,267 @@
+# Microsoft Style Guide MCP Server Configuration
+
+microsoft_style_guide:
+  server:
+    host: "localhost"
+    port: 8000
+    log_level: "INFO"
+    debug_mode: false
+    
+  analysis:
+    default_type: "comprehensive"
+    timeout_seconds: 30
+    max_text_length: 100000
+    min_text_length: 10
+    
+  voice_tone:
+    scoring:
+      warm_relaxed_weight: 0.35
+      crisp_clear_weight: 0.35
+      ready_help_weight: 0.30
+    thresholds:
+      excellent: 80
+      good: 60
+      needs_improvement: 40
+    patterns:
+      contractions_bonus: 5
+      natural_language_bonus: 10
+      formal_language_penalty: 15
+      
+  grammar:
+    max_sentence_words: 25
+    passive_voice_penalty: 10
+    long_sentence_penalty: 5
+    complexity_scoring:
+      simple_sentence_bonus: 5
+      compound_sentence_neutral: 0
+      complex_sentence_penalty: 3
+    
+  terminology:
+    strict_mode: false
+    case_sensitive: false
+    custom_terms: {}
+    microsoft_standards:
+      enforce_microsoft_terms: true
+      suggest_alternatives: true
+      penalty_per_violation: 5
+      
+  accessibility:
+    inclusive_language:
+      enforce_strict: true
+      penalty_per_violation: 15
+    bias_free_communication:
+      check_gendered_pronouns: true
+      check_cultural_bias: true
+      check_ableist_language: true
+    people_first_language:
+      enforce: true
+      suggest_alternatives: true
+      
+  readability:
+    target_score: 70
+    flesch_reading_ease:
+      excellent: 80
+      good: 60
+      fair: 40
+    sentence_variety:
+      check_length_variation: true
+      check_structure_variation: true
+      
+  integrations:
+    vscode:
+      auto_analyze: true
+      show_notifications: true
+      inline_hints: true
+      file_types: 
+        - "md"
+        - "txt" 
+        - "rst"
+        - "adoc"
+      exclude_patterns:
+        - "**/node_modules/**"
+        - "**/dist/**"
+        - "**/build/**"
+        - "**/.git/**"
+        - "**/vendor/**"
+      severity_mapping:
+        voice_tone: "warning"
+        grammar: "error"
+        terminology: "warning"
+        accessibility: "error"
+        
+    github:
+      auto_pr_analysis: true
+      comment_threshold: 50
+      file_analysis: true
+      check_pr_title: true
+      check_pr_description: true
+      max_files_per_pr: 20
+      
+    copilot_chat:
+      enabled: true
+      response_format: "markdown"
+      include_examples: true
+      include_suggestions: true
+      max_suggestions: 10
+
+# Analysis Rules Configuration
+analysis_rules:
+  voice_tone:
+    warm_and_relaxed:
+      positive_indicators:
+        - contractions: ["it's", "you're", "we're", "don't", "can't", "won't", "let's", "you'll", "we'll"]
+        - friendly_words: ["help", "easy", "simple", "quick", "welcome", "thanks"]
+        - natural_phrases: ["you can", "we'll help", "let's", "together"]
+      negative_indicators:
+        - formal_words: ["utilize", "leverage", "facilitate", "implement", "optimize"]
+        - legal_language: ["shall", "must not", "in order to", "pursuant to"]
+        - distant_language: ["aforementioned", "heretofore", "wherein"]
+        
+    crisp_and_clear:
+      positive_indicators:
+        - action_verbs: ["choose", "select", "click", "tap", "open", "close", "save", "delete"]
+        - direct_language: ["now", "next", "then", "first", "finally"]
+      negative_indicators:
+        - weak_modifiers: ["very", "really", "quite", "rather", "extremely", "incredibly"]
+        - wordy_phrases: ["in terms of", "with regard to", "due to the fact that"]
+        - excessive_punctuation: ["!!!", "???", "..."]
+        
+    ready_to_help:
+      positive_indicators:
+        - supportive_language: ["we're here", "need help", "contact us", "support"]
+        - action_oriented: ["follow these", "try", "start by", "here's how"]
+        - encouraging: ["you're all set", "great job", "well done"]
+      negative_indicators:
+        - tentative_language: ["maybe", "perhaps", "possibly", "might want to"]
+        - condescending: ["obviously", "clearly", "simply", "just", "merely"]
+
+  grammar:
+    active_voice:
+      passive_patterns:
+        - "\\b(is|are|was|were|been|be)\\s+\\w*ed\\b"
+        - "\\b(is|are|was|were|been|be)\\s+\\w*en\\b"
+      exceptions:
+        - "well-known"
+        - "user-defined"
+        - "pre-configured"
+        
+    sentence_structure:
+      preferred_patterns:
+        - subject_verb_object: true
+        - imperative_for_instructions: true
+        - parallel_structure_in_lists: true
+      avoid_patterns:
+        - nested_clauses: "more than 2 levels"
+        - run_on_sentences: "more than 25 words"
+        
+  terminology:
+    microsoft_approved:
+      technology_terms:
+        AI: "AI (not A.I.)"
+        API: "API (not Api or api)"
+        app: "app (not application in casual contexts)"
+        email: "email (not e-mail)"
+        internet: "internet (lowercase)"
+        online: "online (one word)"
+        real_time: "real time (noun), real-time (adjective)"
+        setup: "set up (verb), setup (noun)"
+        sign_in: "sign in (verb), sign-in (adjective/noun)"
+        username: "username (one word)"
+        website: "website (one word)"
+        webpage: "webpage (one word)"
+        wifi: "Wi-Fi (hyphenated, both caps)"
+        
+    common_mistakes:
+      - wrong: "e-mail"
+        correct: "email"
+      - wrong: "web site"
+        correct: "website"
+      - wrong: "log in" # as noun
+        correct: "sign in"
+      - wrong: "A.I."
+        correct: "AI"
+        
+  accessibility:
+    inclusive_alternatives:
+      avoid_terms:
+        guys: ["everyone", "folks", "team", "all"]
+        mankind: ["humanity", "people", "humankind"]
+        manpower: ["workforce", "staff", "personnel"]
+        master_slave: ["primary/secondary", "main/replica", "leader/follower"]
+        blacklist: ["block list", "deny list", "exclude list"]
+        whitelist: ["allow list", "safe list", "include list"]
+        crazy: ["unexpected", "unusual", "surprising"]
+        insane: ["extreme", "intense", "remarkable"]
+        lame: ["disappointing", "ineffective", "inadequate"]
+        
+    gendered_language:
+      avoid_pronouns: ["he", "him", "his", "she", "her", "hers"]
+      alternatives:
+        - "Use 'you' to address readers directly"
+        - "Use plural pronouns (they/them)"
+        - "Rewrite to avoid pronouns"
+        - "Use role-based terms (user, developer, admin)"
+        
+    people_first_language:
+      guidelines:
+        - "Use 'people with disabilities' not 'disabled people'"
+        - "Use 'person who is blind' not 'blind person'"
+        - "Focus on the person, not the condition"
+
+# Logging Configuration
+logging:
+  version: 1
+  disable_existing_loggers: false
+  formatters:
+    standard:
+      format: '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+    detailed:
+      format: '%(asctime)s [%(levelname)s] %(name)s:%(lineno)d: %(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: standard
+      stream: ext://sys.stdout
+    file:
+      class: logging.FileHandler
+      level: DEBUG
+      formatter: detailed
+      filename: mcp_server.log
+      mode: 'a'
+  loggers:
+    mcp_server:
+      level: INFO
+      handlers: [console, file]
+      propagate: false
+    mcp_client:
+      level: INFO
+      handlers: [console]
+      propagate: false
+  root:
+    level: WARNING
+    handlers: [console]
+
+# Performance Settings
+performance:
+  caching:
+    enabled: true
+    cache_size: 1000
+    cache_ttl: 3600  # 1 hour
+  
+  rate_limiting:
+    enabled: false
+    requests_per_minute: 60
+    
+  optimization:
+    parallel_analysis: true
+    max_workers: 4
+    chunk_size: 1000
+
+# Feature Flags
+features:
+  experimental_analysis: false
+  ai_powered_suggestions: false
+  advanced_readability: true
+  custom_rule_engine: false
+  real_time_collaboration: false
