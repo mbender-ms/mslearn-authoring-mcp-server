@@ -1,0 +1,22 @@
+# Microsoft Learn Authoring MCP Server Dependencies
+
+# Core MCP framework
+mcp>=1.0.0
+
+# HTTP requests and web scraping
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# HTML to Markdown conversion
+markdownify>=0.11.0
+
+# Development dependencies (optional)
+# Uncomment if you want to install dev tools
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
+# black>=22.0.0
+# flake8>=5.0.0
+# mypy>=1.0.0
+# types-requests>=2.28.0
+# types-beautifulsoup4>=4.11.0
