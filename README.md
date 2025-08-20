@@ -1,448 +1,313 @@
 # Microsoft Style Guide MCP Server
 
-A comprehensive Model Context Protocol (MCP) server and client implementation for analyzing content against the **official Microsoft Writing Style Guide**. This tool integrates seamlessly with **VSCode** and **GitHub Copilot Chat** to help content developers ensure their writing follows Microsoft's style principles: **warm and relaxed**, **crisp and clear**, and **ready to lend a hand**.
+A professional Model Context Protocol (MCP) server implementation for analyzing content against the **official Microsoft Writing Style Guide**. This tool provides seamless integration with **VS Code**, **GitHub Copilot Chat**, and other MCP-compatible AI tools to help content creators ensure their writing follows Microsoft's style principles: **warm and relaxed**, **crisp and clear**, and **ready to help**.
 
-## 🚀 Two Versions Available
+## 🚀 Two Server Versions
 
-### 📚 **Standard Version** (`mcp_server.py`)
-- Built-in style guide rules and patterns
-- Fast local analysis without internet dependency
-- Perfect for basic style checking and offline use
-- Provides links to official documentation for detailed guidance
-
-### 🌐 **Web-Enabled Version** (`mcp_server_web.py`) 
+### 🌐 **Web-Enabled Version** (`mcp_server_web.py`) - **Recommended**
 - **Fetches live guidance** from the official Microsoft Style Guide website
 - Always up-to-date with the latest style guide changes
-- Provides real official content and examples
-- Requires internet connection for full functionality
+- Provides real official content and examples from Microsoft Learn
+- Requires internet connection for comprehensive analysis
 
-## 🎯 Features
+### 📚 **Offline Version** (`mcp_server.py`)
+- Built-in style guide rules and patterns
+- Fast local analysis without internet dependency
+- Perfect for secure environments or offline work
+- Provides links to official documentation for detailed guidance
 
-- **🔍 Live Style Guide Integration**: Fetches current guidance from official Microsoft docs
-- **🛠️ VSCode Integration**: Real-time analysis through MCP protocol
-- **💬 GitHub Copilot Chat**: Interactive style checking and suggestions
-- **📊 Multiple Analysis Types**: Choose comprehensive, voice/tone, grammar, terminology, or accessibility focus
-- **💡 Official Guidance**: Get real recommendations directly from Microsoft Style Guide
-- **🌐 Always Current**: Web version stays updated with official style guide changes
-- **⚡ Fast Local Analysis**: Standard version provides instant feedback
+## ✨ Key Features
 
-## 🚀 Quick Start
+- **🔍 Official Style Guide Integration**: Fetches current guidance from Microsoft Learn
+- **🛠️ VS Code Integration**: Seamless MCP protocol integration with automated setup
+- **💬 AI Chat Compatible**: Works with GitHub Copilot, Claude, and other MCP-enabled AI tools
+- **📊 Comprehensive Analysis**: Voice/tone, grammar, terminology, and accessibility checking
+- **⚡ One-Command Setup**: Fully automated installation and configuration
+- **🌐 Always Current**: Web version stays synchronized with official style guide updates
+
+## 🚀 Quick Installation
 
 ### Prerequisites
+- **Python 3.8+**
+- **VS Code** (for IDE integration)
+- **Internet connection** (for web-enabled version)
 
-- **Python 3.8+** 
-- **VSCode** with MCP support
-- **GitHub Copilot** (for chat integration)
-
-### 1. Choose Your Version
-
-**For most users, we recommend the Web-Enabled Version** for the most accurate, up-to-date guidance.
+### One-Command Setup
 
 ```bash
-# Web-Enabled Version (Recommended)
-python setup_script.py --server mcp_server_web.py
+# Clone or download this repository
+git clone https://github.com/your-username/mslearn-authoring-mcp-server.git
+cd mslearn-authoring-mcp-server
 
-# OR Standard Version (Offline-capable)
-python setup_script.py --server mcp_server.py
-```
-
-### 2. Automated Setup (Recommended)
-
-```bash
-# 1. Create project directory
-mkdir microsoft-style-guide-mcp
-cd microsoft-style-guide-mcp
-
-# 2. Save all project files to this directory
-# (both mcp_server.py and mcp_server_web.py, mcp_client.py, requirements.txt, setup_script.py)
-
-# 3. Run automated setup with your preferred version
+# Run automated setup (chooses web version by default)
 python setup_script.py
 ```
 
-The setup script will:
-- ✅ Check Python version compatibility
-- ✅ Install required dependencies
-- ✅ Test MCP server functionality  
-- ✅ Configure VSCode integration
-- ✅ Set up GitHub Copilot Chat integration
-- ✅ Create test files and examples
+**That's it!** The setup script will:
+- ✅ Install Python dependencies
+- ✅ Configure VS Code MCP integration
+- ✅ Set up AI chat tool compatibility
+- ✅ Test server functionality
+- ✅ Create all necessary configuration files
 
-### 2. Manual Setup
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Test the installation
-python mcp_client.py --mode interactive
-
-# Analyze a file
-python mcp_client.py --mode file --file README.md
-```
-
-## 🔧 Configuration
-
-### Choosing the Right Version
-
-| Feature | Standard Version | Web-Enabled Version |
-|---------|------------------|---------------------|
-| **Internet Required** | ❌ No | ✅ Yes |
-| **Speed** | ⚡ Very Fast | 🌐 Fast (with caching) |
-| **Accuracy** | ✅ Good | 🎯 Excellent (official source) |
-| **Up-to-date** | ⚠️ Manual updates needed | ✅ Always current |
-| **Official Content** | 📎 Links only | 📚 Full content |
-| **Use Case** | Offline work, basic checking | Production use, detailed guidance |
-
-**Recommendation**: Use the **Web-Enabled Version** (`mcp_server_web.py`) for production work where you need the most accurate, current guidance from the official Microsoft Style Guide.
-
-### VSCode Integration
-
-Both versions work identically with VSCode. The setup script creates `.vscode/settings.json` with MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "microsoft-style-guide": {
-      "command": "python",
-      "args": ["/absolute/path/to/mcp_server_web.py"],
-      "env": {
-        "PYTHONPATH": "/absolute/path/to/project"
-      }
-    }
-  }
-}
-```
-
-**Manual VSCode Setup:**
-1. Open VSCode in your project directory
-2. Install the MCP extension (if available)
-3. Update paths in `.vscode/settings.json` to absolute paths
-4. Restart VSCode
-
-### GitHub Copilot Chat Integration
-
-Use the provided `copilot_integration.py` script:
+### Advanced Setup Options
 
 ```bash
-# Analyze content
-python copilot_integration.py analyze "Your content here"
+# Auto-select web version (default)
+python setup_script.py --auto
 
-# Voice and tone check
-python copilot_integration.py voice "Welcome to our app!"
+# Force offline version
+python setup_script.py --offline
 
-# Get improvement suggestions
-python copilot_integration.py improve "The user should utilize the functionality"
+# Skip all prompts with environment variable
+set AUTOMATED_SETUP=true & python setup_script.py
+```
 
-# Get style guidelines
-python copilot_integration.py guidelines
+## 📁 Project Structure
+
+```
+mslearn-authoring-mcp-server/
+├── mcp_server.py              # Offline MCP server implementation
+├── mcp_server_web.py          # Web-enabled MCP server (recommended)
+├── mcp_client.py              # Client for testing and interaction
+├── mcp_manifest.json          # MCP server manifest for VS Code
+├── setup_script.py            # Automated installation script
+├── requirements.txt           # Python dependencies
+└── README.md                  # This documentation
 ```
 
 ## 📖 Usage
 
 ### Command Line Interface
 
-#### Interactive Mode
+#### Quick Test
 ```bash
+# Test with simple text (web version)
+python mcp_client.py --mode text --text "Your content here"
+
+# Interactive mode
 python mcp_client.py --mode interactive
+
+# Analyze a specific file
+python mcp_client.py --mode file --file document.md
 ```
 
-**Available commands:**
-- `analyze [text]` - Comprehensive style analysis
-- `voice [text]` - Voice and tone analysis
-- `grammar [text]` - Grammar and style check
-- `terms [text]` - Terminology consistency
-- `access [text]` - Accessibility and bias check
-- `improve [text]` - Get improvement suggestions
-- `file [path]` - Analyze a file
-- `guidelines [category]` - Get style guidelines
+#### Available Analysis Types
+- `comprehensive` - Complete style analysis (default)
+- `voice_tone` - Voice and tone compliance
+- `grammar` - Grammar and style patterns
+- `terminology` - Terminology consistency
+- `accessibility` - Inclusive language checking
 
-#### Direct Analysis
-```bash
-# Analyze a file (Web-Enabled Version)
-python mcp_client.py --mode file --file document.md --server mcp_server_web.py
+### VS Code Integration
 
-# Analyze text with live guidance
-python mcp_client.py --mode text --text "Your content here" --server mcp_server_web.py
+After running the setup script, the MCP server is automatically configured in VS Code:
 
-# Get live style guidelines
-python mcp_client.py --mode guidelines --category voice --server mcp_server_web.py
+1. **Automatic Configuration**: Setup script creates all necessary VS Code settings
+2. **MCP Server Detection**: Server appears in MCP-compatible extensions
+3. **AI Chat Integration**: Works with GitHub Copilot Chat and other AI tools
+4. **Real-time Analysis**: Content analysis through MCP protocol
 
-# Search the official style guide
-python mcp_client.py --mode search --query "active voice examples"
+#### Using with GitHub Copilot Chat
+
+In VS Code, use Copilot Chat with commands like:
+```
+@workspace analyze this document for Microsoft Style Guide compliance
+@workspace check the voice and tone of this content
+@workspace suggest style improvements for this text
 ```
 
-### Analysis Types
+### Direct MCP Integration
 
-| Type | Description | Standard Version | Web-Enabled Version |
-|------|-------------|------------------|---------------------|
-| `comprehensive` | Complete analysis (default) | ✅ Pattern matching | 🌐 Patterns + Official guidance |
-| `voice_tone` | Voice and tone compliance | ✅ Basic scoring | 🌐 Official examples & tips |
-| `grammar` | Grammar and style | ✅ Pattern detection | 🌐 Official writing tips |
-| `terminology` | Terminology consistency | ✅ Basic checking | 🌐 Live A-Z word list |
-| `accessibility` | Inclusive language | ✅ Pattern matching | 🌐 Official bias-free guide |
+For developers integrating with other MCP clients:
 
-### VSCode Usage
-
-Once configured, the MCP server provides:
-
-1. **Real-time Analysis**: Automatic content checking
-2. **Code Actions**: Quick fixes and suggestions
-3. **Hover Information**: Style guide tips
-4. **Commands**: Direct access to analysis tools
-
-**Example VSCode Commands:**
-- `Ctrl+Shift+P` → "Microsoft Style Guide: Analyze Document"
-- `Ctrl+Shift+P` → "Microsoft Style Guide: Get Guidelines"
-
-### GitHub Copilot Chat Commands
-
-In Copilot Chat, use these patterns:
-
-```
-@workspace analyze this content for Microsoft Style Guide compliance
-@workspace check the voice and tone of this text
-@workspace suggest improvements for this writing
-@workspace show Microsoft Style Guide rules for terminology
+```python
+# Server connection parameters
+{
+  "command": "python",
+  "args": ["path/to/mcp_server_web.py"],
+  "env": {
+    "PYTHONPATH": "path/to/project"
+  }
+}
 ```
 
 ## 🎯 Microsoft Style Guide Principles
 
 This tool analyzes content based on Microsoft's core principles:
 
-### 1. Voice and Tone
+### Voice and Tone
+- **Warm and Relaxed**: Use contractions, natural language
+- **Crisp and Clear**: Direct, scannable content under 25 words per sentence
+- **Ready to Help**: Action-oriented, supportive language
 
-**Warm and Relaxed**
-- ✅ Use contractions (it's, you're, we'll)
-- ✅ Natural, conversational language
-- ❌ Avoid overly formal terms (utilize, leverage)
-
-**Crisp and Clear**  
-- ✅ Direct, scannable content
-- ✅ Sentences under 25 words
-- ❌ Avoid weak modifiers (very, really)
-
-**Ready to Help**
-- ✅ Action-oriented language (you can, let's, here's how)
-- ✅ Supportive tone
-- ❌ Avoid tentative language (maybe, perhaps)
-
-### 2. Grammar and Style
-
+### Grammar and Style Standards
 - **Active Voice**: "You can configure settings" vs "Settings can be configured"
 - **Second Person**: Address readers as "you"
 - **Imperative Mood**: Use for instructions (Click, Choose, Select)
-- **Parallel Structure**: Consistent formatting in lists
+- **Scannable Format**: Use headers, bullets, and short paragraphs
 
-### 3. Terminology Standards
-
-| Correct | Avoid | Note |
-|---------|-------|------|
-| AI | A.I. | No periods |
+### Terminology Consistency
+| Preferred | Avoid | Context |
+|-----------|-------|---------|
+| AI | A.I. | No periods in abbreviation |
 | email | e-mail | One word |
 | sign in (verb) | login, log in | Microsoft standard |
-| setup (noun) | set-up | One word as noun |
 | website | web site | One word |
-| Wi-Fi | WiFi, wifi | Hyphenated, both caps |
 
-### 4. Accessibility and Inclusion
-
-**Inclusive Language:**
+### Accessibility and Inclusion
 - Use "everyone" instead of "guys"
-- Use "allow list" instead of "whitelist"  
-- Use "primary/secondary" instead of "master/slave"
-
-**People-First Language:**
-- "People with disabilities" not "disabled people"
-- Focus on the person, not the condition
+- Use "allow list" instead of "whitelist"
+- People-first language: "people with disabilities"
 
 ## 📊 Example Analysis Output
 
-### Web-Enabled Version Output
-```bash
+### Web-Enabled Version
+```
 📋 Microsoft Style Guide Analysis
 
-✅ Good - Minor style improvements suggested
+✅ Good - Minor improvements suggested
 
 📊 Text Statistics:
-   • Words: 45
-   • Sentences: 3
-   • Avg words/sentence: 15.0
+   • Words: 45 | Sentences: 3 | Avg: 15.0 words/sentence
 
-🔍 Issues Detected: 2
-   • Grammar/Style: 1
-   • Voice/Tone: 0
-   • Accessibility: 1
+🔍 Issues Found: 2
+   • Voice/Tone: Use more contractions for natural tone
+   • Accessibility: Consider "everyone" instead of "users"
 
-✅ Positive Elements: 2
+🌐 Official Microsoft Guidance:
+   Voice and tone - Use contractions like "it's" and "you're" 
+   to create a friendly, approachable tone...
 
-🌐 Official Guidance: Fetched from Microsoft Style Guide
-
-📚 Official Microsoft Style Guide Guidance:
-**Issue Type:** Grammar
-**Source:** Writing tips - Microsoft Style Guide
-**URL:** https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
-
-**Official Guidance:**
-Use active voice and indicative mood most of the time. Use imperative mood in procedures. 
-Keep adjectives and adverbs close to the words they modify...
-
-📎 Read Full Guidance: https://learn.microsoft.com/en-us/style-guide/global-communications/writing-tips
+📎 Reference: https://learn.microsoft.com/en-us/style-guide/voice-tone
 ```
 
-### Standard Version Output
-```bash
-📋 Microsoft Style Guide Analysis Summary
+### Offline Version
+```
+📋 Microsoft Style Guide Analysis
+
 ⚠️ Minor style issues detected
 
 📊 Text Statistics:
-   Words: 45
-   Sentences: 3
-   Avg words/sentence: 15.0
+   Words: 45 | Sentences: 3 | Avg: 15.0 words/sentence
 
 🔍 Issues Found: 2
-   • Grammar/Style: 1
-   • Terminology: 0
-   • Accessibility: 1
-   • Voice/Tone: 0
+   • Voice/Tone: Consider more conversational language
+   • Terminology: Check official Microsoft terms
 
-🌐 For detailed guidance, consult the official Microsoft Style Guide:
+🌐 For detailed guidance:
    https://learn.microsoft.com/en-us/style-guide
-
-💡 Use the search_style_guide tool to get specific guidance for flagged issues.
 ```
 
-## 🛠️ Development
-
-### Project Structure
-
-```
-microsoft-style-guide-mcp/
-├── mcp_server.py              # MCP server implementation
-├── mcp_client.py              # MCP client and interfaces
-├── requirements.txt           # Python dependencies
-├── setup_script.py            # Automated setup
-├── README.md                  # This documentation
-├── test_document.md           # Sample test file
-├── copilot_integration.py     # GitHub Copilot integration
-├── vscode_mcp_config.json     # VSCode MCP configuration
-├── vscode_settings_template.json # Complete VSCode settings
-└── .vscode/
-    └── settings.json          # VSCode MCP settings
-```
+## 🛠️ Development and Testing
 
 ### Running Tests
-
 ```bash
 # Test server functionality
-python -c "import mcp_server; print('Server OK')"
-
-# Test client connection
 python mcp_client.py --mode text --text "Test content"
 
-# Test file analysis
-python mcp_client.py --mode file --file test_document.md
+# Verify web version connectivity
+python -c "import mcp_server_web; print('Web server OK')"
+
+# Check offline version
+python -c "import mcp_server; print('Offline server OK')"
 ```
 
-### Extending the Analyzer
+### Server Configuration
 
-The `MicrosoftStyleAnalyzer` class in `mcp_server.py` can be extended with additional rules:
-
-```python
-# Add new terminology standards
-self.terminology_standards["new_term"] = {
-    "correct": "new-term",
-    "avoid": ["newterm", "new term"],
-    "note": "Use hyphenated form"
-}
-
-# Add new voice pattern
-self.voice_guidelines["new_category"] = {
-    "positive_patterns": [r"\b(helpful|pattern)\b"],
-    "negative_patterns": [r"\b(avoid|this)\b"]
-}
-```
+Both servers expose these MCP tools:
+- `analyze_content` - Main analysis function
+- `get_style_guidelines` - Retrieve specific guidelines  
+- `suggest_improvements` - Get improvement recommendations
+- `search_style_guide` - Search official documentation (web version only)
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-**1. "Module not found" errors**
+**Setup Script Fails**
 ```bash
+# Check Python version
+python --version  # Should be 3.8+
+
+# Install dependencies manually
 pip install -r requirements.txt
 ```
 
-**2. VSCode MCP server not connecting**
-- Ensure absolute paths in VSCode settings
-- Check Python is in PATH
-- Restart VSCode after configuration changes
-- Verify MCP extension is installed
+**VS Code Integration Not Working**
+- Restart VS Code completely after running setup
+- Check that MCP-compatible extensions are installed
+- Verify server appears in extension settings
 
-**3. "Server script not found"**
-```bash
-# Ensure files are in the same directory
-ls -la mcp_server.py mcp_client.py
-```
-
-**4. Analysis returns empty results**
-- Check file encoding (should be UTF-8)
-- Verify file contains text content
-- Ensure file is not binary
+**Web Version Connection Issues**
+- Check internet connectivity
+- Verify firewall allows Python to access microsoft.com
+- Try offline version as fallback
 
 ### Debug Mode
-
 ```bash
-# Enable verbose logging
-python mcp_client.py --mode interactive --verbose
+# Run with verbose output
+python mcp_client.py --mode text --text "test" --verbose
 
-# Test with simple content
-python mcp_client.py --mode text --text "Hello world" --verbose
+# Check server logs
+python mcp_server_web.py  # Should start without errors
 ```
 
-### VSCode Troubleshooting
+## 🔧 Configuration Options
 
-1. **Check MCP Server Status**:
-   - Open VSCode Developer Tools
-   - Look for MCP connection logs
-   - Verify server process is running
+### Environment Variables
+```bash
+# Force specific server version
+set MCP_SERVER_VERSION=web
+set MCP_SERVER_VERSION=offline
 
-2. **Reset Configuration**:
-   ```bash
-   # Regenerate VSCode settings
-   python setup_script.py
-   ```
+# Enable debug logging
+set MCP_DEBUG=true
 
-3. **Manual Configuration**:
-   - Copy `vscode_mcp_config.json` content
-   - Paste into VSCode `settings.json`
-   - Update paths to absolute paths
+# Skip VS Code configuration
+set SKIP_VSCODE_CONFIG=true
+```
+
+### VS Code Settings
+The setup script creates comprehensive VS Code configuration:
+- MCP server registration
+- Multiple extension compatibility
+- Automatic server discovery
+- Debug configuration
+
+## 🤝 Contributing
+
+1. Fork this repository
+2. Create a feature branch
+3. Follow Microsoft Style Guide principles in code and documentation
+4. Test with both server versions
+5. Submit a pull request
+
+### Development Setup
+```bash
+git clone your-fork-url
+cd mslearn-authoring-mcp-server
+python setup_script.py --auto
+# Make changes and test
+python mcp_client.py --mode interactive
+```
 
 ## 📚 References
 
 - [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/)
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
-- [VSCode MCP Integration](https://code.visualstudio.com/)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes following Microsoft Style Guide principles
-4. Test thoroughly with the provided test suite
-5. Submit a pull request
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [VS Code MCP Integration](https://code.visualstudio.com/)
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See LICENSE file for details.
 
-## 🆘 Support
+## ⚠️ Disclaimer
 
-- **Issues**: Check troubleshooting section above
-- **Style Guide Questions**: Refer to [Microsoft Style Guide](https://learn.microsoft.com/en-us/style-guide/)
-- **MCP Questions**: Check [MCP Documentation](https://modelcontextprotocol.io/)
+This tool is not officially affiliated with Microsoft. It's an independent implementation based on publicly available Microsoft Style Guide principles and documentation.
 
 ---
 
-**Note**: This tool is not officially affiliated with Microsoft. It's an independent implementation based on publicly available Microsoft Style Guide principles.
+**Built for better technical writing and communication** ✨
 
-Built with ❤️ for better technical writing and communication.
+For questions or issues, please check the troubleshooting section or create an issue in this repository.
