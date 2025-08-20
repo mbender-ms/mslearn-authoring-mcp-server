@@ -1,0 +1,18 @@
+---
+title: execute - Microsoft Style Guide
+description: Describes guidelines to use 'execute' in Microsoft documents and provides alternate examples.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# execute
+
+Don't use except to follow the UI. Use *run* instead. Even if the UI includes *execute,* the action is *run*. Always use *run* in the context of macros and queries.
+
+**Examples**  
+To run the program, select **Execute**.  
+Commands are run in the order in which they're listed in the file.  
+A thread is the basic unit of program execution.

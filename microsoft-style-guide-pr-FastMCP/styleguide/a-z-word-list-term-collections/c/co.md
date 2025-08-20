@@ -1,0 +1,15 @@
+---
+title: co- - Microsoft Style Guide
+description: Describes how to use the prefix 'co-' with words in Microsoft content and clarifies when to hyphenate the prefix.
+author: pallep
+ms.author: pallep
+ms.date: 08/26/2024
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# co-
+
+In general, don’t hyphenate words beginning with *co-,* such as *coauthor* and *coordinate,* unless it’s necessary to avoid confusion. When in doubt, check *[Merriam-Webster Dictionary](https://merriam-webster.com/).*
+
+To learn more about hyphenation, see [Hyphens](~/punctuation/dashes-hyphens/hyphens.md).

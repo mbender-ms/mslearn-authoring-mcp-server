@@ -1,0 +1,13 @@
+---
+title: imbed - Microsoft Style Guide
+description: Describes the use of the term "imbed" in Microsoft content. Don't use.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# imbed
+
+Don't use. Use *embed* instead.

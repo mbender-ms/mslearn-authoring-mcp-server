@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "microsoft-style-guide": {
+      "command": "python",
+      "args": ["server.py"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}

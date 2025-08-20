@@ -1,0 +1,18 @@
+---
+title: foo, foobar, fubar - Microsoft Style Guide
+description: Describes guidelines to use 'foo', 'foobar', or 'fubar' in Microsoft documents. Do not use.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# foo, foobar, fubar
+
+Don't use *fubar*.
+
+Don't use *foo,* *foobar,* or related words in content for a general audience. It's OK to use
+these words as placeholders or variable names in content for a
+technical audience, but if you can, use another placeholder instead,
+such as *Example.exe*.

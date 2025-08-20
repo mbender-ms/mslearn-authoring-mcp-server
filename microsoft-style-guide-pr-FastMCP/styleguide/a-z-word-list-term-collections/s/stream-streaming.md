@@ -1,0 +1,13 @@
+---
+title: stream, streaming - Microsoft Style Guide
+description: Describes guidelines to use 'stream' or 'streaming' in Microsoft documents.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# stream, streaming
+
+OK to use as a noun or verb to refer to audio, video, or graphics coming to a browser or media player over the internet. *Stream* is also OK to use as an I/O management term in C programming.

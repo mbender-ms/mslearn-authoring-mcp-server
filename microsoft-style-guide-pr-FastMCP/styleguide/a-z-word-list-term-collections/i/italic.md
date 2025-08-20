@@ -1,0 +1,19 @@
+---
+title: italic - Microsoft Style Guide
+description: Describes how to use the term "italic" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 09/3/2019
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# italic
+
+Use only as an adjective, not as a noun. Don't use *italics* or *italicized*.
+
+**Examples**  
+To make the selected characters italic, select **Ctrl+I**.   
+The characters are displayed in italic type.
+
+In writing for customers, use *regular type* to describe type that's neither bold nor italic.

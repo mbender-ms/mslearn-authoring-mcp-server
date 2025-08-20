@@ -1,0 +1,19 @@
+---
+title: executable, .exe - Microsoft Style Guide
+description: Describes guidelines to use 'executable' or '.exe' in Microsoft documents and provides alternate examples.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# executable, .exe
+
+Use *executable* and *.exe* as adjectives, not nouns. Use *an,* not *a,* as the article preceding .exe: *an .exe file.*
+
+**Examples**  
+an executable program  
+the .exe file  
+
+Use *executable file* only in content for a technical audience. For a general audience, use *program file* instead. 

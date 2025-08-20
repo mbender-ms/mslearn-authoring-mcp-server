@@ -1,0 +1,64 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "_themes/**",
+          "**/docfx.json",
+          "_repo.en-us/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices.md",
+          "SECURITY.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/*.png",
+          "**/*.jpg"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "_themes/**",
+          "**/docfx.json",
+          "_repo.en-us/**"
+        ]
+      }
+    ],
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-WritingStyleGuideInternal",
+      "breadcrumb_path": "/writing-style-guide-msft-internal/breadcrumb/toc.json",
+      "feedback_system": "None",
+      "permissioned-type": "private",
+      "authorize_path": "~/authorize.md",
+      "permissioned-groups": ["LearnPermissionedGroup\\MVPTest-Permcon-Private","Microsoft-All\\All_MsFte_and_All_MsNonFte","StyleGuidesExternalUsers\\StyleGuidesExternalUsers"],
+      "searchScope": ["Microsoft Style Guides"],
+      "hideScope": true
+    },
+    "fileMetadata": {
+      "permissioned-type": {
+        "**/toc.yml": "public",
+        "**/toc.md": "public",
+        "ms.author": {
+          "**/*.md": "heidib"
+        },
+        "author": {
+          "**/*.md": "ReneeW-CPub"
+        }
+      }
+    },
+    "template": []
+  }
+}

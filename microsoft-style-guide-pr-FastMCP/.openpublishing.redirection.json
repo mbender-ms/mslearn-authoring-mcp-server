@@ -1,0 +1,169 @@
+{
+  "redirections": [
+    {
+      "source_path": "styleguide/index.md",
+      "redirect_url": "/style-guide/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "writing-style-guide-msft-internal/index.md",
+      "redirect_url": "/writing-style-guide-msft-internal/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/welcome/welcome.md",
+      "redirect_url": "/product-style-guide-msft-internal/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/index.md",
+      "redirect_url": "/product-style-guide-msft-internal/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "styleguide/a-z-word-list-term-collections/c/copilot-copilot.md",
+      "redirect_url": "/style-guide/welcome/whats-new/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "styleguide/a-z-word-list-term-collections/m/minus-sign.md",
+      "redirect_url": "/style-guide/punctuation/dashes-hyphens/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "styleguide/punctuation/dashes-hyphens/emes.md",
+      "redirect_url": "/style-guide/punctuation/dashes-hyphens/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "styleguide/punctuation/dashes-hyphens/enes.md",
+      "redirect_url": "/style-guide/punctuation/dashes-hyphens/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "styleguide/a-z-word-list-term-collections/a/antimalware.md",
+      "redirect_url": "/style-guide/a-z-word-list-term-collections/a/anti-malware/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/s/spatial-anchors.md",
+      "redirect_url": "/product-style-guide-msft-internal/welcome/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/m/microsoft-purview/microsoft-purview-data-security-investigations.md",
+      "redirect_url": "/product-style-guide-msft-internal/welcome/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/copilot-guidance/agent-copilot-agents.md",
+      "redirect_url": "/product-style-guide-msft-internal/a_z_names_terms/a/ai-agent/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/grammar-and-punctuation/grammar-and-punctuation.md",
+      "redirect_url": "/product-style-guide-msft-internal/grammar-usage/grammar-usage/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/grammar-and-punctuation/pronouns.md",
+      "redirect_url": "/product-style-guide-msft-internal/grammar-usage/grammar-usage/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "writing-style-guide-msft-internal/a-z-word-list-term-collections/c/copilot-copilot.md",
+      "redirect_url": "/product-style-guide-msft-internal/copilot-guidance/copilot-guidance/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/s/sql-database-sql-database.md",
+      "redirect_url": "/product-style-guide-msft-internal/a_z_names_terms/s/azure-sql-database",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/w/webpage-microsoft-365.md",
+      "redirect_url": "/product-style-guide-msft-internal/a_z_names_terms/w/webpage/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/how-to-use-this-guide.md",
+      "redirect_url": "/product-style-guide-msft-internal/welcome/how-to-use-this-guide/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/basic-attribution-guidelines.md",
+      "redirect_url": "microsoft-365/basic-attribution-guidelines",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/feature-names.md",
+      "redirect_url": "microsoft-365/feature-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/microsoft-365-app-names.md",
+      "redirect_url": "microsoft-365/microsoft-365-app-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/microsoft-365-sku-names.md",
+      "redirect_url": "microsoft-365/microsoft-365-sku-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/office-to-microsoft-365-transition.md",
+      "redirect_url": "microsoft-365/office-to-microsoft-365-transition",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-and-feature-names/product-and-feature-names.md",
+      "redirect_url": "microsoft-365/product-and-feature-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-names/new-product-and-feature-names.md",
+      "redirect_url": "../product-and-feature-names/new-product-and-feature-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-names/product-names.md",
+      "redirect_url": "../product-and-feature-names/product-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-names/referring-to-azure-product-names.md",
+      "redirect_url": "../product-and-feature-names/referring-to-azure-product-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-names/referring-to-dynamics-365-names.md",
+      "redirect_url": "../product-and-feature-names/referring-to-dynamics-365-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/product-names/referring-to-power-platform-product-names.md",
+      "redirect_url": "../product-and-feature-names/referring-to-power-platform-product-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/date-and-time.md",
+      "redirect_url": "grammar-usage/time-day-date/relative-date-and-time-terms-in-ui",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/e/editor.md",
+      "redirect_url": "../m/editor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/a/azure-ai-agent-service.md",
+      "redirect_url": "product-style-guide-msft-internal/a_z_names_terms/a/azure-ai-foundry-agent-service",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "product-style-guide-msft-internal/a_z_names_terms/a/azure-openai-service.md",
+      "redirect_url": "product-style-guide-msft-internal/a_z_names_terms/a/azure-openai",
+      "redirect_document_id": false
+    }
+  ]
+}

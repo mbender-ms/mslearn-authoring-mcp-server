@@ -1,0 +1,18 @@
+---
+title: file name - Microsoft Style Guide
+description: Describes guidelines to use 'file name' in Microsoft documents and provides examples.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# file name
+
+Two words as an adjective or a noun when referring to the name of a file. Don't hyphenate. 
+
+Usually one word when referring to a programming term, such as the **FileName** property.
+
+**Example**  
+Set the **FileName** property before you set an initial file name.

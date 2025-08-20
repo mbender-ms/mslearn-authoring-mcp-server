@@ -1,0 +1,13 @@
+---
+title: spoofing - Microsoft Style Guide
+description: Describes guidelines to use 'spoofing' in Microsoft documents.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# spoofing
+
+It's OK to use *spoofing* in content for all audiences if you're sure that your audience will understand the meaning. To avoid ambiguity, be specific about the kind of spoofing you're referring to, such as *email spoofing* or *IP spoofing*.

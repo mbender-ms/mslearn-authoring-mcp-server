@@ -1,0 +1,51 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/xrefmap.yml",
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/*.png",
+          "**/*.jpg"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**"
+        ]
+      }
+    ],
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": {
+      "uhfHeaderId": "MSDocsHeader-StyleGuide",
+      "breadcrumb_path": "/style-guide/breadcrumb/toc.json",
+      "searchScope": [
+        "Microsoft Style Guides", "Style Guide"
+      ],
+      "feedback_system": "Standard",
+      "no_index_ks": true,
+      "permissioned-type": "public"
+    },
+    "fileMetadata": {
+      "searchScope": { "styleguide/**.md": ["Microsoft Style Guides", "Style Guide"] } 
+    },
+    "template": [],
+    "dest": "styleguide",
+    "markdownEngineName": "markdig"
+  }
+}

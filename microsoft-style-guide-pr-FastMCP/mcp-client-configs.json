@@ -1,0 +1,94 @@
+{
+  "name": "Microsoft Style Guide MCP Server Configuration Examples",
+  "description": "Configuration examples for different MCP clients",
+  
+  "claude-desktop": {
+    "description": "Configuration for Claude Desktop application",
+    "location": "~/Library/Application Support/Claude/claude_desktop_config.json (Mac) or %APPDATA%/Claude/claude_desktop_config.json (Windows)",
+    "config": {
+      "mcpServers": {
+        "microsoft-style-guide": {
+          "command": "python",
+          "args": ["C:/path/to/microsoft-style-guide-pr/server.py"],
+          "env": {
+            "PYTHONPATH": "C:/path/to/microsoft-style-guide-pr"
+          }
+        }
+      }
+    }
+  },
+  
+  "generic-mcp-client": {
+    "description": "Generic MCP client configuration",
+    "config": {
+      "server": {
+        "name": "microsoft-style-guide",
+        "executable": "python",
+        "args": ["server.py"],
+        "working_directory": "/path/to/microsoft-style-guide-pr",
+        "environment": {
+          "PYTHONPATH": "/path/to/microsoft-style-guide-pr"
+        }
+      }
+    }
+  },
+  
+  "nodejs-client": {
+    "description": "Node.js MCP client configuration example",
+    "config": {
+      "servers": [
+        {
+          "name": "microsoft-style-guide",
+          "command": "python",
+          "args": ["server.py"],
+          "cwd": "/path/to/microsoft-style-guide-pr",
+          "env": {
+            "PYTHONPATH": "/path/to/microsoft-style-guide-pr"
+          }
+        }
+      ]
+    }
+  },
+  
+  "vscode-extension": {
+    "description": "VS Code extension configuration for MCP",
+    "settings": {
+      "mcp.servers": {
+        "microsoft-style-guide": {
+          "command": "python",
+          "args": ["server.py"],
+          "cwd": "${workspaceFolder}/microsoft-style-guide-pr"
+        }
+      }
+    }
+  },
+  
+  "notes": [
+    "Replace 'C:/path/to/microsoft-style-guide-pr' with the actual path to your cloned repository",
+    "On Windows, use forward slashes (/) or double backslashes (\\\\) in JSON paths",
+    "On Unix-like systems, you might need to use 'python3' instead of 'python'",
+    "Make sure Python and the required packages are installed before starting the server",
+    "The server must be started from the repository root directory to access the style guide files"
+  ],
+  
+  "troubleshooting": {
+    "common_issues": {
+      "module_not_found": {
+        "problem": "ModuleNotFoundError: No module named 'fastmcp'",
+        "solution": "Run 'pip install -r requirements.txt' in the repository directory"
+      },
+      "file_not_found": {
+        "problem": "FileNotFoundError when accessing style guide files",
+        "solution": "Ensure the server is started from the repository root directory"
+      },
+      "permission_denied": {
+        "problem": "Permission denied when starting server",
+        "solution": "On Unix systems, run 'chmod +x start_server.sh' to make the script executable"
+      },
+      "python_not_found": {
+        "problem": "'python' is not recognized as an internal or external command",
+        "solution": "Install Python 3.8+ and ensure it's in your system PATH, or use full path to python.exe"
+      }
+    }
+  }
+}

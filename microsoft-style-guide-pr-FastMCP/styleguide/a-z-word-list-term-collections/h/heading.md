@@ -1,0 +1,15 @@
+---
+title: heading - Microsoft Style Guide
+description: Describes how to use the term "heading" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# heading
+
+Use instead of *head* or *header* to refer to the heading of an article or a section.
+
+**See also** [Headings](~/scannable-content/headings.md)

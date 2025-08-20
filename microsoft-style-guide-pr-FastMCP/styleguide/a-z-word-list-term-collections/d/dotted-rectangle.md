@@ -1,0 +1,17 @@
+---
+title: dotted rectangle - Microsoft Style Guide
+description: Describes guidelines to use 'dotted rectangle' in Microsoft documents and provides alternate examples.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# dotted rectangle
+
+Use
+only if you need to describe the appearance of the element that a
+customer drags to select a region on the screen. Otherwise, use *bounding outline* (not *marquee*) instead.
+
+**See** [bounding outline](~/a-z-word-list-term-collections/b/bounding-outline.md)

@@ -1,0 +1,13 @@
+---
+title: leading - Microsoft Style Guide
+description: Guidelines for using the term leading in Microsoft documents.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# leading
+
+Use instead of *preceding* or *beginning* in phrases such as *leading slashes* or *leading* *spaces,* which might occur at the beginning of strings, parameters, or other values. *Leading* in this context is the opposite of *trailing.*

@@ -1,0 +1,31 @@
+---
+title: blade - Microsoft Style Guide
+description: This article outlines use of the word blade per Microsoft style guidelines.
+author: pallep
+ms.author: pallep
+ms.date: 11/02/2023
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# blade
+
+Avoid talking about UI elements and instead try to discuss what the customer needs to do. If you have to refer to a pane in the Azure portal, use *blade*. 
+
+When you must mention a blade:
+
+  - Always name the blade except in general references to a blade or blades.  
+  
+  - Use sentence-style capitalization for the blade name.<br />    **Example** <br />the **Resource group** blade
+    
+  - Don't capitalize *blade,* but always include *blade* in the blade title or subtitle.  
+  
+  - In a blade title or subtitle, use a plus sign (+) instead of *and* or an ampersand (&). Include a space on each side of the plus sign.  
+  
+  - Add an article, such as *a* or *the,* to a blade name that consists of a verb and a singular noun.<br />    **Example** <br />Add a connector blade. (Not *Add connector blade.*)  
+  
+  - Use *on* to describe the contents of a blade.<br />    **Example** <br />On the **Web app** blade, name your site.  
+  
+  - Use *open* and *close* as verbs with blades.
+
+**See also** [Describing interactions with UI](~/procedures-instructions/describing-interactions-with-ui.md), [Formatting text in instructions](~/procedures-instructions/formatting-text-in-instructions.md)

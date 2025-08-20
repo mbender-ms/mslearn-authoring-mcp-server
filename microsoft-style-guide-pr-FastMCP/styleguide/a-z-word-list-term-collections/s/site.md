@@ -1,0 +1,17 @@
+---
+title: site - Microsoft Style Guide
+description: Describes guidelines to use 'site' in Microsoft documents, and provides an example with a link to additional terms.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# site
+
+Use to describe a collection of webpages that's part of a larger whole, such as the Microsoft website or the MSDN website. Use *website* instead of *site* if necessary for clarity.
+
+Information is *on* a site, but the address of a site is *at* [www.example.com](https://www.example.com/).
+
+**See also** [page](../p/page.md), [URLs and web addresses](~/urls-web-addresses.md)

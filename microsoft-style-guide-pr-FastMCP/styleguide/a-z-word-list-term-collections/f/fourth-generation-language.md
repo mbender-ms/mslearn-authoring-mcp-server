@@ -1,0 +1,13 @@
+---
+title: fourth-generation language - Microsoft Style Guide
+description: Describes guidelines to use 'fourth-generation language' in Microsoft documents. Spell out on the first mention.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# fourth-generation language
+
+Spell out on the first mention. On subsequent mentions, it's OK to abbreviate as *4GL*. 

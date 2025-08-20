@@ -1,0 +1,17 @@
+---
+title: user, end user - Microsoft Style Guide
+description: Describes how to implement the terms 'user' and 'end user' in Microsoft content and clarifies to avoid using the term 'user' when possible.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# user, end user
+
+Don't use *end user*. 
+
+Avoid *user* when you can. Use *audience,* *customer*<em>, person, people, employee, coworker,</em> or *you* instead.
+
+It's OK to use *user* in content for developers to distinguish the technology developer from the technology user. It's also OK to use *user* in content for technology professionals to distinguish the system administrator from the system users.

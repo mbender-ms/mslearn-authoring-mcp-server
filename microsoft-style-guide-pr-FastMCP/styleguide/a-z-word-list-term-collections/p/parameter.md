@@ -1,0 +1,15 @@
+---
+title: parameter - Microsoft Style Guide
+description: Describes guidelines to use 'parameter' in Microsoft documents and provides a link to commonly used terms.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# parameter
+
+Use for a value given to a variable until an operation is completed. Don't use to mean *characteristic,* *element,* *limit,* or *boundary*.
+
+**See also** [argument vs. parameter](~/a-z-word-list-term-collections/a/argument-vs-parameter.md)

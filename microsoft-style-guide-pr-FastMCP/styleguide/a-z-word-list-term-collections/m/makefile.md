@@ -1,0 +1,13 @@
+---
+title: makefile - Microsoft Style Guide
+description: Describes guidelines to use 'makefile' in Microsoft documents.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# makefile
+
+One word. Use only in content for a technical audience. 

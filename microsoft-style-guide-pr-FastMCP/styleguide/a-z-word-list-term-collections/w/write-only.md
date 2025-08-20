@@ -1,0 +1,15 @@
+---
+title: write-only - Microsoft Style Guide
+author: pallep
+description: This instructs to always hyphenate with the terms "write-only."
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# write-only
+
+Always hyphenate. 
+
+**See also** [read/write, read/write permission](~/a-z-word-list-term-collections/r/read-write-read-write-permission.md)

@@ -1,0 +1,26 @@
+---
+title: number sign (\#) - Microsoft Style Guide
+description: Describes guidelines to use the number sign '(\#)' in Microsoft documents and provides examples.
+author: pallep
+ms.author: pallep
+ms.date: 03/24/2025
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# number sign (\#)
+
+Always spell out *number* in *number sign.* Don't use *pound sign.*
+
+Don't use the \# symbol preceding a numeral. Spell out *number* instead. For example, use *number 7,* not *\#7*. When space is limited, as in tables, it's OK to abbreviate *number* as *No*. 
+
+**Global tip** The abbreviation *No.* isn't used to abbreviate *number* in other languages, so using *No.* for this purpose might lead to mistranslation in machine-translated content. 
+
+In social media, it's OK to use the \# symbol to indicate a hashtag. Don't use *number sign* to refer to the hashtag.
+
+**Example**  
+(on X, formerly known as Twitter) A quick look at top conversations and \#Office365 product announcements of the week.
+
+It's OK to use the \# symbol in references to the \# key on the keyboard.
+
+**See also** [Keys and keyboard shortcuts term collection](~/a-z-word-list-term-collections/term-collections/keys-keyboard-shortcuts.md)

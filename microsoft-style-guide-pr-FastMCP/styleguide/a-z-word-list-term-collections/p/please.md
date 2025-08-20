@@ -1,0 +1,18 @@
+---
+title: please - Microsoft Style Guide
+description: Describes how to use the term "please" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# please
+
+Avoid *please* except
+in situations where the customer is asked to do something
+inconvenient or the application or site is to blame for the situation. 
+
+**Example**  
+The network connection was lost. Please reenter your password. 

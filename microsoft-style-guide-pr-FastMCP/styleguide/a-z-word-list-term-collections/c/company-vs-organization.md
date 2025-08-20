@@ -1,0 +1,19 @@
+---
+title: company vs. organization - Microsoft Style Guide
+description: Describes when to use the term 'company' instead of 'organization' in Microsoft content depending on the audience and context.
+author: pallep
+ms.author: pallep
+ms.date: 09/11/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# company vs. organization
+
+Use the term that makes the most sense for your audience.  
+
+*Company* is appropriate for businesses, which don't think of themselves as organizations.  
+
+*Organization* includes schools, nonprofits, and government customers in addition to companies.  
+
+**See also** [enterprise](~/a-z-word-list-term-collections/e/enterprise.md), [org, organization](~/a-z-word-list-term-collections/o/org-organization.md) 

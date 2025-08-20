@@ -1,0 +1,19 @@
+---
+title: scroll bar, scroll arrow, scroll box - Microsoft Style Guide
+description: In this article, learn about style guidelines for using the term 'scroll bar' in Microsoft documents.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# scroll bar, scroll arrow, scroll box
+
+Most of the time, avoid talking about elements in UI. Instead, describe what the customer needs to do. 
+
+Don't use *arrow* to refer to a *scroll arrow*.
+
+Don't use *slider* or *slider box* as a synonym for *scroll box*. 
+
+Don't use *gray* or *shaded area* to refer to the *scroll bar*.

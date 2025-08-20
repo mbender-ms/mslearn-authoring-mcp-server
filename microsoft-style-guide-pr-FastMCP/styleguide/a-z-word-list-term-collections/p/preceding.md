@@ -1,0 +1,13 @@
+---
+title: preceding - Microsoft Style Guide
+description: Describes how to use the term "preceding" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# preceding
+
+It's OK to use *preceding,* *previous,* or *earlier* to mean earlier in a piece of content, but use a hyperlink instead if you can. Don't use *above.* 

@@ -1,0 +1,16 @@
+---
+title: need - Microsoft Style Guide
+description: Describes guidelines to use 'need' in Microsoft documents and provides multiple examples.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# need
+
+Use *need* to discuss a requirement or obligation; use *want* when the customer has a choice of actions.
+
+**Example**  
+If you want to use a laser printer, you need a laser printer driver.

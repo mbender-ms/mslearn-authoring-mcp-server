@@ -1,0 +1,16 @@
+- name: Microsoft Product Style Guide - Internal
+  tocHref: /product-style-guide-msft-internal/welcome/welcome/
+  topicHref: /product-style-guide-msft-internal/welcome/welcome
+- name: Microsoft Product Style Guide - Internal
+  tocHref: /product-style-guide-msft-internal/
+  topicHref: /product-style-guide-msft-internal/welcome
+  items:
+  - name: Responsible AI Style Guide
+    tocHref: /product-style-guide-msft-internal/responsible-ai-style-guide/
+    topicHref: /product-style-guide-msft-internal/responsible-ai-style-guide/welcome/welcome
+  - name: Microsoft Cybersecurity + Threat Intelligence Style Guide
+    tocHref: /product-style-guide-msft-internal/cybersecurity-threat-intelligence-style-guide/
+    topicHref: /product-style-guide-msft-internal/cybersecurity-threat-intelligence-style-guide/welcome/welcome
+  - name: Microsoft Teams Style Guide
+    tocHref: /product-style-guide-msft-internal/teams-style-guide/
+    topicHref: /product-style-guide-msft-internal/teams-style-guide/welcome/welcome

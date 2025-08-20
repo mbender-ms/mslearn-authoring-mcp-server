@@ -1,0 +1,15 @@
+---
+title: postal code - Microsoft Style Guide
+description: Describes how to use the term "postal code" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# postal code
+
+Unless you're writing content that's specifically for the United States, use *postal code* instead of *ZIP Code*.
+
+**See also** [ZIP Code](~/a-z-word-list-term-collections/z/zip-code.md)

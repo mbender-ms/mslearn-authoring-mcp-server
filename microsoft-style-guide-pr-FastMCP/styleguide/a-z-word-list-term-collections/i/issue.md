@@ -1,0 +1,21 @@
+---
+title: issue - Microsoft Style Guide
+description: Describes how to use the term "issue" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# issue
+
+Don't use as a verb. Describe what's happening, or use a more specific verb instead.
+
+**Example**  
+Windows displays an error message. 
+
+Don't use as a synonym for *problem.*
+
+**Example**  
+Outlook has run into a problem and needs to restart. 

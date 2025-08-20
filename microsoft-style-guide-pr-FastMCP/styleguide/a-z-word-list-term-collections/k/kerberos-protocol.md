@@ -1,0 +1,18 @@
+---
+title: Kerberos protocol - Microsoft Style Guide
+description: Describes how to use the term "Kerberos protocol" in Microsoft content.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# Kerberos protocol
+
+Always use *Kerberos* as an adjective (*Kerberos protocol*), not as a noun (*Kerberos*).
+
+On the first mention, indicate what version or versions of the Kerberos protocol you're referring to. 
+
+**Example**  
+Windows Server 2012 implements the Kerberos version 5 authentication protocol.

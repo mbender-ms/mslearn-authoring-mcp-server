@@ -1,0 +1,19 @@
+---
+title: Question marks - Microsoft Style Guide
+description: Instructs us to use questions and question marks sparingly. In general, customers want us to give them answers unless they need to make a decision.
+author: pallep
+ms.author: pallep
+ms.date: 01/19/2018
+ms.topic: contributor-guide
+ms.service: microsoft-writing-style-guide
+---
+
+# Question marks
+
+Use questions sparingly. In general, customers want *us* to give *them* answers. 
+
+When a customer needs to make a decision, a question is appropriate.<br />
+**Examples**  
+If you forgot your password, provide your secret answer.   
+More nature themes are available online.  
+Do you want to save your changes?
