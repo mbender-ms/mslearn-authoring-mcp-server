@@ -1,0 +1,45 @@
+{
+  "name": "Microsoft Style Guide MCP Server",
+  "version": "1.0.0",
+  "description": "Microsoft Style Guide analysis server (Web version)",
+  "author": "Microsoft Style Guide Team",
+  "type": "mcp-server",
+  "capabilities": {
+    "tools": [
+      {
+        "name": "analyze_content",
+        "description": "Analyze content against Microsoft Style Guide",
+        "category": "analysis"
+      },
+      {
+        "name": "search_style_guide",
+        "description": "Search Microsoft Style Guide for guidance",
+        "category": "search"
+      },
+      {
+        "name": "get_official_guidance",
+        "description": "Get official style guidance for specific issues",
+        "category": "guidance"
+      },
+      {
+        "name": "fetch_style_guide_page",
+        "description": "Fetch content from style guide pages",
+        "category": "content"
+      }
+    ],
+    "resources": [
+      "Microsoft Writing Style Guide",
+      "Brand Voice Guidelines",
+      "Top 10 Style Tips",
+      "Bias-Free Communication",
+      "Writing Tips"
+    ]
+  },
+  "configuration": {
+    "server_command": "C:\\Users\\allensu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+    "server_args": [
+      "C:\\Users\\allensu\\github\\mslearn-authoring-mcp-server\\mcp_server_web.py"
+    ],
+    "working_directory": "C:\\Users\\allensu\\github\\mslearn-authoring-mcp-server"
+  }
+}
